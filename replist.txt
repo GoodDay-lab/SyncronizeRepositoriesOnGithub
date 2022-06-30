@@ -1,0 +1,3 @@
+https://github.com/GoodDay-lab/test2 master repo2
+https://github.com/GoodDay-lab/test master repo1
+https://github.com/GoodDay-lab/test3 master repo3
