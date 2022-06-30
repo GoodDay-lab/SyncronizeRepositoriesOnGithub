@@ -43,23 +43,17 @@ def init():
     os.mkdir(cmdargs.localrepo)
 
     # Parsing 'replist' file
-    buffer = []
+    number = 1
     with open(cmdargs.replist, "r") as src:
         for line in src:
-            url, branch, name, *_ = line.split()
-            bufname = name
-            number = 2
-            while bufname in buffer:
-                bufname = name + str(number)
-                number += 1 
-            name = bufname
+            url, branch, *_ = line.split()
+            name = "repo_" + str(number)
+            number += 1
             remotes.append({
                     "url": url,
                     "name": name,
                     "branch": branch
                 })
-            buffer.append(name)
-    del buffer
 
     try:
         os.chdir(cmdargs.localrepo)
@@ -69,6 +63,7 @@ def init():
 
         for remote in remotes:
             remote_add(remote.get('name'), remote.get('url'))
+            create_branch(remote.get('name'), remote.get('branch'))
             pull(remote.get('name'), remote.get('branch'))
 
         for remote in remotes:
