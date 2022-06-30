@@ -9,6 +9,7 @@ import json
 
 cmdargs = None
 remotes = []
+branches = []
 scriptpath = os.path.abspath(os.curdir)
 
 logging.basicConfig(level=logging.INFO)
@@ -24,7 +25,7 @@ def get_repository_name(url):
 
 
 def init():
-    global cmdargs, remotes
+    global cmdargs, remotes, branches
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--localrepo", default="./localrepo")
@@ -54,18 +55,19 @@ def init():
                     "name": name,
                     "branch": branch
                 })
+            branches.append(branch)
 
     try:
         os.chdir(cmdargs.localrepo)
         git_init()
 
         # Uniting remote repostories into local repo
-
+            
         for remote in remotes:
-            remote_add(remote.get('name'), remote.get('url'))
-            create_branch(remote.get('name'), remote.get('branch'))
+            remote_add(remote.get('name'), remote.get('url')) 
             pull(remote.get('name'), remote.get('branch'))
 
+        create_branch(remote.get('name'), remote.get('branch'))
         for remote in remotes:
             push(remote.get('name'), remote.get('branch'))
     finally:
@@ -94,7 +96,7 @@ def main():
             flag_in = False
             for rep in remotes:
                 flag_in = get_repository_name(rep['url']) == payload['repository']['name'] or flag_in
-                if flag_in: 
+                if flag_in:
                     repository = rep
                     break
             if not flag_in: return "error"
@@ -103,7 +105,8 @@ def main():
                 os.chdir(cmdargs.localrepo)
                 pull(repository.get('name'), repository.get('branch'))
                 for remote in remotes:
-                    push(remote['name'], remote['branch'])
+                    if remote['branch'] in branches:
+                        push(remote['name'], remote['branch'])
             finally:
                 os.chdir(scriptpath)
         return "Error"

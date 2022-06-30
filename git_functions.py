@@ -6,7 +6,7 @@ def create_branch(repository, branch):
     logging.info("[BRANCH] checking")
     pid = os.fork()
     if pid == 0:
-        os.execlp("git", "create branch", "checkout", "--track", repository + "/" + branch)
+        os.execlp("git", "create branch", "checkout", "-b", branch, repository + "/" + branch)
     os.wait4(pid, 0)
     logging.info("[BRANCH FINISHED]")
     return 0
@@ -53,4 +53,12 @@ def git_init():
         os.execlp("git", "passwording", "config", "--local", "credential.useHttpPath", "true")
     os.wait4(pid, 0)
     logging.info("[INIT FINISHED]")
+    return 0
+
+
+def get_fetch():
+    pid = os.fork()
+    if pid == 0:
+        os.execlp("git", "fetching", "fetch", "--all")
+    os.wait4(pid, 0)
     return 0
