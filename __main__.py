@@ -11,6 +11,7 @@ cmdargs = None
 remotes = []
 branches = []
 scriptpath = os.path.abspath(os.curdir)
+app = None
 
 logging.basicConfig(level=logging.INFO)
 
@@ -95,6 +96,7 @@ def close():
 
 
 def main():
+    global app
     app = Flask("Syncronizer")
 
     @app.route("/", methods=["POST"])
@@ -125,7 +127,7 @@ def main():
                 os.chdir(scriptpath)
         return "Error"
 
-    app.run(host=cmdargs.host, port=cmdargs.port)
+    # app.run(host=cmdargs.host, port=cmdargs.port)
 
 
 if __name__ == '__main__':
