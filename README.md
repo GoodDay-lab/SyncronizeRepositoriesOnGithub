@@ -4,16 +4,19 @@ HOWTO unite a repositories
 - Adding remote repositories (git remote add ..)
 	
 	$ git remote add repo1 ...
+	
 	$ git remote add repo2 ...
 
 - Pulling remotes
 	
 	$ git pull repo1 <branch>
+	
 	$ git pull repo2 <branch>
 	
 - Pushing into remotes
 	
 	$ git push repo1 <branch>
+	
 	$ git push repo2 <branch>
 	
 - Excellent! We united 2 repositories into 1 repository!
