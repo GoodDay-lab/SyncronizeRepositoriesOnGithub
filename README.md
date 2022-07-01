@@ -2,20 +2,26 @@ HOWTO unite a repositories
 
 - Create a dir
 - Adding remote repositories (git remote add ..)
-	"""
+	"
+	#!/bin/bash
+
 	git remote add repo1 ...
 	git remote add repo2 ...
-	"""
+	"
 - Pulling remotes
-	"""
+	"
+	#!/bin/bash
+
 	git pull repo1 <branch>
 	git pull repo2 <branch>
-	"""
+	"
 - Pushing into remotes
-	"""
+	"
+	#!/bin/bash
+
 	git push repo1 <branch>
 	git push repo2 <branch>
-	"""
+	"
 - Excellent! We united 2 repositories into 1 repository!
 
 
@@ -45,6 +51,7 @@ HOWTO update a repository
 Утилита git должна быть в системной переменной PATH
 
 Так же необходимо обеспечить автоаутенфикацию аккаунта в github-е при push:
+	
 	$ git config credential.helper store
 	
 	$ echo "https://(youremail):(yourauthkey)@github.com/path/to/your/repository
