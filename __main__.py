@@ -15,6 +15,16 @@ scriptpath = os.path.abspath(os.curdir)
 logging.basicConfig(level=logging.INFO)
 
 
+def cmdline(line):
+    pid = os.fork()
+    if pid == 0:
+        cmd = line.split()
+        cmd.insert(1, cmd[0])
+        os.execlp(*cmd)
+    os.wait4(pid, 0)
+    return 0
+
+
 def create_secure_url(url, username, password):
     ind = url.find("://") + 3
     return url[:ind] + username + ":" + password + "@" + url[ind:]
@@ -47,19 +57,20 @@ def init():
     number = 1
     with open(cmdargs.replist, "r") as src:
         for line in src:
-            url, branch, *_ = line.split()
+            url, branch, user, *_ = line.split()
             name = "repo_" + str(number)
             number += 1
             remotes.append({
                     "url": url,
                     "name": name,
-                    "branch": branch
+                    "branch": branch,
+                    "email": user
                 })
             branches.append(branch)
 
     try:
         os.chdir(cmdargs.localrepo)
-        git_init()
+        git_init(branch)
 
         # Uniting remote repostories into local repo
             
@@ -67,7 +78,6 @@ def init():
             remote_add(remote.get('name'), remote.get('url')) 
             pull(remote.get('name'), remote.get('branch'))
 
-        create_branch(remote.get('name'), remote.get('branch'))
         for remote in remotes:
             push(remote.get('name'), remote.get('branch'))
     finally:
@@ -102,9 +112,14 @@ def main():
             if not flag_in: return "error"
             
             try:
-                os.chdir(cmdargs.localrepo)
-                pull(repository.get('name'), repository.get('branch'))
+                os.chdir(cmdargs.localrepo) 
+                pull(repository.get('name'), repository.get('branch'), nocommit=True)
                 for remote in remotes:
+                    if remote == repository: continue
+                    change_user(remote['name'], remote['branch'], "Good", remote['email'])
+                    pull(remote['name'], remote['branch'], nocommit=True, rebase=True)
+                    cmdline("git show")
+                    commit(payload['commits'][0]['message'], remote['email'])
                     if remote['branch'] in branches:
                         push(remote['name'], remote['branch'])
             finally:
