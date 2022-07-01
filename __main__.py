@@ -76,7 +76,7 @@ def init():
             
         for remote in remotes:
             remote_add(remote.get('name'), remote.get('url')) 
-            pull(remote.get('name'), remote.get('branch'))
+            pull(remote.get('name'), remote.get('branch'), rebase=True)
 
         for remote in remotes:
             push(remote.get('name'), remote.get('branch'))
@@ -116,9 +116,9 @@ def main():
                 pull(repository.get('name'), repository.get('branch'), nocommit=True)
                 for remote in remotes:
                     if remote == repository: continue
-                    change_user(remote['name'], remote['branch'], "Good", remote['email'])
-                    pull(remote['name'], remote['branch'], nocommit=True, rebase=True)
                     commit(payload['commits'][0]['message'], remote['email'])
+                    change_user(repository['name'], remote['branch'], "Good", remote['email'])
+                    # pull(remote['name'], remote['branch'], nocommit=False, rebase=False)
                     if remote['branch'] in branches:
                         push(remote['name'], remote['branch'])
             finally:
