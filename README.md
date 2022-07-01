@@ -51,7 +51,7 @@ HOWTO update a repository
 	
 	$ git config credential.helper store
 	
-	$ echo "https://(youremail):(yourauthkey)@github.com/path/to/your/repository
+	$ echo "https://(youremail):(yourauthkey)@github.com/path/to/your/repository >> ~/.git-credentials
 
 
 to run:
