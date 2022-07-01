@@ -11,7 +11,6 @@ cmdargs = None
 remotes = []
 branches = []
 scriptpath = os.path.abspath(os.curdir)
-app = Flask(__name__)
 
 logging.basicConfig(level=logging.INFO)
 
@@ -95,38 +94,35 @@ def close():
     os.rmdir(cmdargs.localrepo)
 
 
-def main():
-    global app
+@app.route("/", methods=["POST"])
+def general():
+    payload = json.loads(request.form.to_dict()['payload'])
 
-    @app.route("/", methods=["POST"])
-    def general():
-        payload = json.loads(request.form.to_dict()['payload'])
+    if request.headers['X-GitHub-Event'] == 'push':
+        repository = None
+        flag_in = False
+        for rep in remotes:
+            flag_in = get_repository_name(rep['url']) == payload['repository']['name'] or flag_in
+            if flag_in:
+                repository = rep
+                break
+        if not flag_in: return "error"
+        
+        try:
+            os.chdir(cmdargs.localrepo) 
+            pull(repository.get('name'), repository.get('branch'), nocommit=True)
+            for remote in remotes:
+                if remote == repository: continue
+                commit(payload['commits'][0]['message'], remote['email'])
+                change_user(repository['name'], remote['branch'], "Good", remote['email'])
+                # pull(remote['name'], remote['branch'], nocommit=False, rebase=False)
+                if remote['branch'] in branches:
+                    push(remote['name'], remote['branch'])
+        finally:
+            os.chdir(scriptpath)
+    return "Error"
 
-        if request.headers['X-GitHub-Event'] == 'push':
-            repository = None
-            flag_in = False
-            for rep in remotes:
-                flag_in = get_repository_name(rep['url']) == payload['repository']['name'] or flag_in
-                if flag_in:
-                    repository = rep
-                    break
-            if not flag_in: return "error"
-            
-            try:
-                os.chdir(cmdargs.localrepo) 
-                pull(repository.get('name'), repository.get('branch'), nocommit=True)
-                for remote in remotes:
-                    if remote == repository: continue
-                    commit(payload['commits'][0]['message'], remote['email'])
-                    change_user(repository['name'], remote['branch'], "Good", remote['email'])
-                    # pull(remote['name'], remote['branch'], nocommit=False, rebase=False)
-                    if remote['branch'] in branches:
-                        push(remote['name'], remote['branch'])
-            finally:
-                os.chdir(scriptpath)
-        return "Error"
-
-    # app.run(host=cmdargs.host, port=cmdargs.port)
+# app.run(host=cmdargs.host, port=cmdargs.port)
 
 
 init()
