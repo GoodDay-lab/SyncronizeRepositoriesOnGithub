@@ -94,6 +94,9 @@ def close():
     os.rmdir(cmdargs.localrepo)
 
 
+app = Flask(__name__)
+
+
 @app.route("/", methods=["POST"])
 def general():
     payload = json.loads(request.form.to_dict()['payload'])
