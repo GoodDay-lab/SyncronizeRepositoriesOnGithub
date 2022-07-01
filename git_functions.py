@@ -27,7 +27,7 @@ def push(repository, branch):
     logging.info("[PUSH] pushing %s/%s" % (repository, branch))
     pid = os.fork()
     if pid == 0:
-        os.execlp("git", "pushing", "push", repository, branch)
+        os.execlp("git", "pushing", "push", repository, branch, "--force")
     os.wait4(pid, 0)
     logging.info("[PUSH FINISHED]")
     return 0
@@ -68,7 +68,7 @@ def get_fetch():
 def change_user(repository, branch, name, email):
     pid = os.fork()
     if pid == 0:
-        os.execlp("git", "changing", "commit", "--amend", "--author", "{} <{}>".format(name, email))
+        os.execlp("git", "changing", "commit", "--amend", "--author", "{} <{}>".format(name, email), "--no-edit")
     os.wait4(pid, 0)
 
     pid = os.fork()

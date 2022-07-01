@@ -118,7 +118,6 @@ def main():
                     if remote == repository: continue
                     change_user(remote['name'], remote['branch'], "Good", remote['email'])
                     pull(remote['name'], remote['branch'], nocommit=True, rebase=True)
-                    cmdline("git show")
                     commit(payload['commits'][0]['message'], remote['email'])
                     if remote['branch'] in branches:
                         push(remote['name'], remote['branch'])
