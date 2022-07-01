@@ -53,6 +53,10 @@ HOWTO update a repository
 	
 	$ echo "https://(youremail):(yourauthkey)@github.com/path/to/your/repository >> ~/.git-credentials
 
+Обязательно установить пакеты для python
+
+	$ python -m pip install -r requirements.txt
+
 
 to run:
 	$ python __main__.py --host <host> --port <port> --localrepo <path to localrepo> --replist <path to replist.txt>
