@@ -39,9 +39,7 @@ def init():
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--localrepo", default="./localrepo")
-    parser.add_argument("--replist")
-    parser.add_argument("--username")
-    parser.add_argument("--password")
+    parser.add_argument("--replist", default="./replist.txt")
     parser.add_argument("--host", default="localhost")
     parser.add_argument("--port", default=9999, type=int)
     args = parser.parse_args()
@@ -50,7 +48,7 @@ def init():
     # Creaing local repo
     if os.path.exists(cmdargs.localrepo):
         logging.warn("dir '%s' already exists!" % cmdargs.localrepo)
-        exit(1)
+        close()
     os.mkdir(cmdargs.localrepo)
 
     # Parsing 'replist' file
@@ -125,7 +123,9 @@ def general():
             os.chdir(scriptpath)
     return "Error"
 
-# app.run(host=cmdargs.host, port=cmdargs.port)
 
-
-init()
+try:
+    init()
+    app.run(host=cmdargs.host, port=cmdargs.port)
+finally:
+    close()
