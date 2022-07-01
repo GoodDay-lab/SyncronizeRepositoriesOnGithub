@@ -129,9 +129,4 @@ def main():
     # app.run(host=cmdargs.host, port=cmdargs.port)
 
 
-def run():
-    try:
-        init()
-        main()
-    finally:
-        close()
+init()
