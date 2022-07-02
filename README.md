@@ -28,8 +28,8 @@ src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
 
 	$ git fetch repo1 && git merge repo1/development
 
-Как следствие всё происходит в соответствии с статьёй (src),
-  под объединением репозиториев я понимаю "git merge repo/master", когда их основные ветки объединяются в один коммит.
+Всё происходит в соответствии с статьёй (src),
+  под объединением репозиториев я понимаю процесс, когда их основные ветки объединяются в один коммит.
 
 
 HOWTO update a repository
