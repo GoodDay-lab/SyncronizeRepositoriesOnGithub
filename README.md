@@ -67,7 +67,7 @@ HOWTO update a repository
 	
 	$ git config credential.helper store
 	
-	$ echo "https://(yourgithubaccount):(yourauthkey)@github.com/path/to/your/repository >> ~/.git-credentials
+	$ echo "https://(yourgithubaccount):(yourauthkey)@github.com/path/to/your/repository" >> ~/.git-credentials
 
 Обязательно установить пакеты для python
 
