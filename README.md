@@ -9,17 +9,27 @@ HOWTO unite a repositories
 
 - Pulling remotes
 	
-	$ git pull repo1 <branch>
+	$ git pull repo1 development
 	
-	$ git pull repo2 <branch>
+	$ git pull repo2 development
 	
 - Pushing into remotes
 	
-	$ git push repo1 <branch>
+	$ git push repo1 development
 	
-	$ git push repo2 <branch>
+	$ git push repo2 development
 	
 - Excellent! We united 2 repositories into 1 repository!
+
+Имеется ввиду это:
+src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
+
+Но поскольку "git pull repo1 development" в своей реализации производит, грубо говоря:
+
+	$ git fetch repo1 && git merge repo1/development
+
+Как следствие всё происходит в соответствии с статьёй (src),
+  под объединением репозиториев я понимаю "git merge repo/master", когда их основные ветки объединяются в один коммит.
 
 
 HOWTO update a repository
@@ -27,13 +37,16 @@ HOWTO update a repository
 - We getting an notice via webhook github (for example repo1)
 - Pulling an repo1
 	
-	$ git pull repo1 <branch>
+	$ git pull repo1 development
 	
 - Pushing into other repos
 	
-	$ git push repo2 <branch>
+	$ git push repo2 development
 	
 - Excellent! We updated an repository!
+
+Здесь мы merge-им историю repo1/development с локальный веткой development
+  и обновляем repo2/development
 
 
 
