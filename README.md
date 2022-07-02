@@ -1,11 +1,14 @@
+Все названия веток, репозиториев и почтовых адресов - условны, вы можете заменить их.
+
+
 HOWTO unite a repositories
 
 - Create a dir
 - Adding remote repositories (git remote add ..)
 	
-	$ git remote add repo1 ...
+	$ git remote add repo1 https://github.com/path/to/your/repo
 	
-	$ git remote add repo2 ...
+	$ git remote add repo2 https://github.com/path/to/your/repo
 
 - Pulling remotes
 	
@@ -98,7 +101,7 @@ examples
 	- Пример configfile:
 
 		https://github.com/youaccount/path/to/repo1 master example1@gmail.com
-		https://github.com/youaccount/path/to/repo1 master example2@gmail.com
+		https://github.com/youaccount/path/to/repo2 master example2@gmail.com
 
 	- Пример запуска программы:
 
