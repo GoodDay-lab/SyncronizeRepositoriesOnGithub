@@ -68,24 +68,38 @@ HOWTO update a repository
 
 Обязательно установить пакеты для python
 
-	$ python -m pip install -r requirements.txt
+	$ python -m pip install -r requirements.txt	
 
 
 to run:
-	$ python __main__.py --host <host> --port <port> --localrepo <path to localrepo> --replist <path to replist.txt>
+	$ python main.py --host (host) --port (port) --localrepo (path to localrepo) --replist (path to config file)
 
-	- localrepo - папка, которая будет создана для связывания всех репозиториев в единое целое,
-					с помощью 'git pull' мы получим локальный репозиторий со общими данными с репозиториев
-	- replist - файл, в котором будет храниться информация о репозиториях в формате, похожем на csv:
-		| <url> <branch> |
-		
-		- url, путь к репозиторию
-		- branch, отслеживаемая ветка
+	- --localrepo (localrepo) - аргумент (localrepo) - это путь к папке, которая будет создана для связывания всех репозиториев в единое целое. После окончания работы скрипта должна автоматически удалиться, если указывает на существующую папку, то сначала удаляет её, даже, если она не пустая, будьте аккуратны (WARNING!!!)
+
+	- --replist (configfile) - аргумент (configfile) - это путь к файлу, в котором будет храниться информация о репозиториях в формате, похожем на csv.
 	
-	- host - хост, на котором будет работать скрипт
+	- --host (host) - аргумент (host) - это хост на котором будет работать скрипт. Доменное имя или IP адрес, например, "localhost". 
+
+	- --port (port) - порт, на котором будет работать скрипт. Должно быть числом от 2^0 до 2^16 (65355, включительно) 
+
+
+configfile:
+	Текстовый файл, данные храняться в формате:
 	
-	- port - порт, на котором будет работать скрипт 
+	- (url) - url к удалённому репозиторию
+	
+	- (branch) - ветка, которую надо отслеживать, должна быть главной. Для примера главными ветками часто бывают (master, development, stable)
+
+	- (email) - электронный адрес, к которому привязан аккаунт github-а. Email адрес автора коммита будет автоматически заменяться на этот адрес, для каждого репозитория индивидуально.
 
 
+examples:
+	Пример configfile:
+		https://github.com/youaccount/path/to/repo1 master example1@gmail.com
+		https://github.com/youaccount/path/to/repo1 master example2@gmail.com
+
+	Пример запуска программы:
+
+		$ python main.py --localrepo ~/localrepo --replist replist.txt
 
 
