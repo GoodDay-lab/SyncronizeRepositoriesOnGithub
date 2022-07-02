@@ -93,11 +93,12 @@ configfile:
 	- (email) - электронный адрес, к которому привязан аккаунт github-а. Email адрес автора коммита будет автоматически заменяться на этот адрес, для каждого репозитория индивидуально.
 
 
-examples:
+examples
+
 	- Пример configfile:
 
-		> https://github.com/youaccount/path/to/repo1 master example1@gmail.com
-		> https://github.com/youaccount/path/to/repo1 master example2@gmail.com
+		https://github.com/youaccount/path/to/repo1 master example1@gmail.com
+		https://github.com/youaccount/path/to/repo1 master example2@gmail.com
 
 	- Пример запуска программы:
 
