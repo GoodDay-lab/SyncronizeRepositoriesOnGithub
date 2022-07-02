@@ -94,12 +94,11 @@ configfile:
 
 
 examples:
-	Пример configfile:
-	'''
-	https://github.com/youaccount/path/to/repo1 master example1@gmail.com
-	https://github.com/youaccount/path/to/repo1 master example2@gmail.com
-	'''
-	Пример запуска программы:
+	- Пример configfile:
+		> https://github.com/youaccount/path/to/repo1 master example1@gmail.com
+		> https://github.com/youaccount/path/to/repo1 master example2@gmail.com
+
+	- Пример запуска программы:
 
 		$ python main.py --localrepo ~/localrepo --replist replist.txt
 
