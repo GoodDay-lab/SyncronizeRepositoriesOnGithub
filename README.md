@@ -68,7 +68,7 @@ src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
 Перед началом надо подключить webhook:
 	- Заходите в репозиторий -> settings -> webhook -> add a webhook -> "в поле url ставите url от ngrok"
 
-### 
+### Install git and python packages
 Утилита git должна быть в системной переменной PATH
 
 Так же необходимо обеспечить автоаутенфикацию аккаунта в github-е при push:
@@ -83,7 +83,7 @@ src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
 
 # Usage
 
-to run:
+### to run:
 	$ python main.py --host (host) --port (port) --localrepo (path to localrepo) --replist (path to config file)
 
 	- --localrepo (localrepo) - аргумент (localrepo) - это путь к папке, которая будет создана для связывания всех репозиториев в единое целое. После окончания работы скрипта должна автоматически удалиться, если указывает на существующую папку, то сначала удаляет её, даже, если она не пустая, будьте аккуратны (WARNING!!!)
@@ -95,7 +95,7 @@ to run:
 	- --port (port) - порт, на котором будет работать скрипт. Должно быть числом от 2^0 до 2^16 (65355, включительно) 
 
 
-configfile:
+### Configure configfile:
 	Текстовый файл, данные храняться в формате:
 	
 	- (url) - url к удалённому репозиторию
@@ -105,7 +105,8 @@ configfile:
 	- (email) - электронный адрес, к которому привязан аккаунт github-а. Email адрес автора коммита будет автоматически заменяться на этот адрес, для каждого репозитория индивидуально.
 
 
-Examples
+### Examples
+
 	- Пример configfile:
 
 		https://github.com/youaccount/path/to/repo1 master example1@gmail.com
