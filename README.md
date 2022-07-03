@@ -1,7 +1,8 @@
 Все названия веток, репозиториев и почтовых адресов - условны, вы можете заменить их.
 
+# HOW IT WORKS
 
-HOWTO unite a repositories
+### HOWTO unite a repositories
 
 - Create a dir
 - Adding remote repositories (git remote add ..)
@@ -35,7 +36,7 @@ src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
   под объединением репозиториев я понимаю процесс, когда их основные ветки объединяются в один коммит.
 
 
-HOWTO update a repository
+### HOWTO update a repository
 
 - We getting an notice via webhook github (for example repo1)
 - Pulling an repo1
@@ -51,16 +52,23 @@ HOWTO update a repository
 Здесь мы merge-им историю repo1/development с локальный веткой development
   и обновляем repo2/development
 
+# Installing
 
-
+### Description
 Скрипт запускает простой сервер,
  который будет обрабатывать запросы с github-webhook
  и синхронизировать между собой репозитории.
 
-Для теста можно использовать ngrok
+### ngrok
+Для теста можно использовать ngrok.
+
+	$ ngrok http 9999
+
+### Adding webhook
 Перед началом надо подключить webhook:
 	- Заходите в репозиторий -> settings -> webhook -> add a webhook -> "в поле url ставите url от ngrok"
 
+### 
 Утилита git должна быть в системной переменной PATH
 
 Так же необходимо обеспечить автоаутенфикацию аккаунта в github-е при push:
@@ -73,6 +81,7 @@ HOWTO update a repository
 
 	$ python -m pip install -r requirements.txt	
 
+# Usage
 
 to run:
 	$ python main.py --host (host) --port (port) --localrepo (path to localrepo) --replist (path to config file)
@@ -96,8 +105,7 @@ configfile:
 	- (email) - электронный адрес, к которому привязан аккаунт github-а. Email адрес автора коммита будет автоматически заменяться на этот адрес, для каждого репозитория индивидуально.
 
 
-examples
-
+Examples
 	- Пример configfile:
 
 		https://github.com/youaccount/path/to/repo1 master example1@gmail.com
