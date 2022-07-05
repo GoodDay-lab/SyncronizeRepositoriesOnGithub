@@ -68,7 +68,7 @@ def init():
 
     try:
         os.chdir(cmdargs.localrepo)
-        git_init(branch)
+        git_init(branches[0])
 
         # Uniting remote repostories into local repo
             
