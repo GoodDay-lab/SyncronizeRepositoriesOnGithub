@@ -75,6 +75,7 @@ def init():
         for remote in remotes:
             remote_add(remote.get('name'), remote.get('url')) 
             pull(remote.get('name'), remote.get('branch'), rebase=True)
+        git_add_all()
 
         for remote in remotes:
             push(remote.get('name'), remote.get('branch'))
