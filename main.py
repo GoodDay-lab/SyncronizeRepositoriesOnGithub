@@ -76,6 +76,7 @@ def init():
             remote_add(remote.get('name'), remote.get('url')) 
             pull(remote.get('name'), remote.get('branch'), rebase=True)
         git_add_all()
+        commitv2("Reinitialized files")
 
         for remote in remotes:
             push(remote.get('name'), remote.get('branch'))

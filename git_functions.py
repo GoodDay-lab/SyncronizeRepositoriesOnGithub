@@ -96,10 +96,17 @@ def git_add_all():
 
 def commit(msg, author):
     pid = os.fork()
-    print("hello world")
+    print("Commiting")
     if pid == 0:
         os.execlp("git", "commiting", "commit", "-am", msg, "--author", f"Jhon Doe <{author}>")
     os.wait4(pid, 0)
     return 0
 
 
+def commitv2(msg):
+    pid = os.fork()
+    print("Commiting")
+    if pid == 0:
+        os.execlp("git", "commiting", "commit", "-am", msg)
+    os.wait4(pid, 0)
+    return 0
