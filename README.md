@@ -107,9 +107,11 @@ src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
 
 ### Examples
 
-- Пример configfile:	
+#### Example configfile:
 	https://github.com/youaccount/path/to/repo1 master example1@gmail.com
 	https://github.com/youaccount/path/to/repo2 master example2@gmail.com
+
+#### Example run script
 
 - Пример запуска программы:
 
