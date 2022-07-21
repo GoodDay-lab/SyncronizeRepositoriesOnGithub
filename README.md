@@ -9,26 +9,20 @@
 
 ### HOWTO unite a repositories
 
-- Create a dir
-- Adding remote repositories (git remote add ..)
-	
+##### Create a dir
+##### Adding remote repositories (git remote add ..):
 	$ git remote add repo1 https://github.com/path/to/your/repo
-	
 	$ git remote add repo2 https://github.com/path/to/your/repo
 
-- Pulling remotes
-	
+##### Pulling remotes:
 	$ git pull repo1 development
-	
 	$ git pull repo2 development
 	
-- Pushing into remotes
-	
+##### Pushing into remotes:
 	$ git push repo1 development
-	
 	$ git push repo2 development
 	
-- Excellent! We united 2 repositories into 1 repository!
+##### Excellent! We united 2 repositories into 1 repository!
 
 Имеется ввиду это:
 src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
@@ -43,16 +37,14 @@ src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
 
 ### HOWTO update a repository
 
-- We getting an notice via webhook github (for example repo1)
-- Pulling an repo1
-	
+##### We getting an notice via webhook github (for example repo1)
+##### Pulling an repo1:
 	$ git pull repo1 development
 	
-- Pushing into other repos
-	
+##### Pushing into other repos:
 	$ git push repo2 development
 	
-- Excellent! We updated an repository!
+##### Excellent! We updated an repository!
 
 Здесь мы merge-им историю repo1/development с локальный веткой development
   и обновляем repo2/development
