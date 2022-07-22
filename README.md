@@ -72,7 +72,8 @@ src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
 	$ python -m pip install -r requirements.txt
 
 ### Adding webhook
-Перед началом надо подключить webhook:
+Перед началом надо подключить webhook
+
 	- Заходите в свой репозиторий 
 	- settings
 	- webhook 
