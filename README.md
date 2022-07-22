@@ -56,9 +56,7 @@ src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
 
 	$ ngrok http 9999
 
-### Adding webhook
-Перед началом надо подключить webhook:
-	- Заходите в репозиторий -> settings -> webhook -> add a webhook -> "в поле url ставите url от ngrok"
+Установить ngrok можно по этой ссылке на любую целевую систему (url) https://ngrok.com/download
 
 ### Install git and python packages
 Утилита git должна быть в системной переменной PATH
@@ -71,7 +69,19 @@ src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
 
 Обязательно установить пакеты для python
 
-	$ python -m pip install -r requirements.txt	
+	$ python -m pip install -r requirements.txt
+
+### Adding webhook
+Перед началом надо подключить webhook:
+	- Заходите в свой репозиторий 
+	- settings
+	- webhook 
+	- add a webhook 
+	- "в поле url ставите url от ngrok"
+	- Так же в параметры ssl надо установить "disable SSL"
+
+После подключения webhook-ов github отправит тестовый запрос на url. 
+Он, скорее всего провалится, т.к вы ещё не запустили скрипт - это нормально. Переходите к следующему шагу.
 
 # Usage
 
@@ -87,8 +97,10 @@ src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
 - --port (port) - порт, на котором будет работать скрипт. Должно быть числом от 2^0 до 2^16 (65355, включительно) 
 
 
-### Configure configfile:
-	Текстовый файл, данные храняться в формате:
+### Configure configfile
+##### Текстовый файл, данные храняться в формате:
+	(url) (branch) (email)
+	(url2) (branch) (email2)
 	
 	- (url) - url к удалённому репозиторию
 	
