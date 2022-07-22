@@ -53,6 +53,8 @@ src: https://blog.devgenius.io/how-to-merge-two-repositories-on-git-b0ed5e3b4448
 
 ### ngrok
 Для теста можно использовать ngrok.
+После запуска появится интерактивное консольное окно, вам нужно поле Forwarding.
+Оно представляет собой:  (ваше публичное url) -> (ваш локальный адрес). Вы копируете публичное url.
 
 	$ ngrok http 9999
 
